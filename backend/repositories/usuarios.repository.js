@@ -422,8 +422,9 @@ export const usuariosRepository = {
         COUNT(CASE WHEN hp.venceu = 0 THEN 1 END) as derrotas_pvp,
         IFNULL(SUM(hp.gols_usuario), 0) as gols_pvp,
         (
-          SELECT ROUND(AVG((cu.velocidade + cu.velocidade_bonus + cu.chute + cu.chute_bonus + cu.defesa + cu.defesa_bonus + cu.energia + cu.energia_bonus) / 4))
+          SELECT ROUND(AVG((c.velocidade + cu.velocidade_bonus + c.chute + cu.chute_bonus + c.defesa + cu.defesa_bonus + c.energia + cu.energia_bonus) / 4))
           FROM cartas_usuario cu
+          JOIN colaboradores c ON cu.colaborador_id = c.id
           WHERE cu.usuario_id = u.id AND cu.eh_titular = 1
         ) as overall
       FROM usuarios u
