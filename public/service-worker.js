@@ -1,7 +1,8 @@
-const VERSAO_CACHE = "copa-ndl-pwa-v1.0.0";
+const VERSAO_CACHE = "copa-ndl-pwa-v1.0.1";
 const CACHE_APP = `${VERSAO_CACHE}-app`;
 const CACHE_DADOS = `${VERSAO_CACHE}-dados`;
 const CACHE_ESTATICO = `${VERSAO_CACHE}-estatico`;
+const DEVE_ATIVAR_CACHE = self.location.hostname === "copa.nordesteloc.com.br" && self.location.protocol === "https:";
 
 const ARQUIVOS_APP = [
   "/",
@@ -26,6 +27,11 @@ const ARQUIVOS_APP = [
 ];
 
 self.addEventListener("install", (evento) => {
+  if (!DEVE_ATIVAR_CACHE) {
+    evento.waitUntil(self.skipWaiting());
+    return;
+  }
+
   evento.waitUntil(
     caches.open(CACHE_APP)
       .then((cache) => cache.addAll(ARQUIVOS_APP))
@@ -34,6 +40,20 @@ self.addEventListener("install", (evento) => {
 });
 
 self.addEventListener("activate", (evento) => {
+  if (!DEVE_ATIVAR_CACHE) {
+    evento.waitUntil(
+      caches.keys()
+        .then((nomesCache) => Promise.all(
+          nomesCache
+            .filter((nomeCache) => nomeCache.startsWith("copa-ndl-pwa"))
+            .map((nomeCache) => caches.delete(nomeCache))
+        ))
+        .then(() => self.registration.unregister())
+        .then(() => self.clients.claim())
+    );
+    return;
+  }
+
   evento.waitUntil(
     caches.keys()
       .then((nomesCache) => Promise.all(
@@ -52,6 +72,10 @@ self.addEventListener("message", (evento) => {
 });
 
 self.addEventListener("fetch", (evento) => {
+  if (!DEVE_ATIVAR_CACHE) {
+    return;
+  }
+
   const requisicao = evento.request;
 
   if (requisicao.method !== "GET") {

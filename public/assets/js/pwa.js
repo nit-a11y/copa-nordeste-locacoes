@@ -1,9 +1,37 @@
 const seletorBotaoInstalar = "pwa-install-button";
 let eventoInstalacaoPendente = null;
 
-registrarServiceWorker();
-prepararInstalacaoPwa();
+if (deveAtivarPwa()) {
+  registrarServiceWorker();
+  prepararInstalacaoPwa();
+} else {
+  limparPwaDesenvolvimento();
+}
 monitorarConexaoPwa();
+
+function deveAtivarPwa() {
+  const host = window.location.hostname;
+  const ehDominioProducao = host === "copa.nordesteloc.com.br";
+  const ehHttps = window.location.protocol === "https:";
+
+  return ehDominioProducao && ehHttps;
+}
+
+async function limparPwaDesenvolvimento() {
+  if ("serviceWorker" in navigator) {
+    const registros = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registros.map((registro) => registro.unregister()));
+  }
+
+  if ("caches" in window) {
+    const nomesCache = await caches.keys();
+    await Promise.all(
+      nomesCache
+        .filter((nomeCache) => nomeCache.startsWith("copa-ndl-pwa"))
+        .map((nomeCache) => caches.delete(nomeCache))
+    );
+  }
+}
 
 async function registrarServiceWorker() {
   if (!("serviceWorker" in navigator)) {
