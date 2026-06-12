@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ef4444">
+  <title>Copa Nordeste Locacoes - Offline</title>
+  <style>
+    :root {
+      --cor-fundo: #05070d;
+      --cor-card: rgba(15, 23, 42, 0.88);
+      --cor-primaria: #ef4444;
+      --cor-texto: #ffffff;
+      --cor-muted: #cbd5e1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        linear-gradient(180deg, rgba(5, 7, 13, 0.74), rgba(5, 7, 13, 0.96)),
+        url("/assets/images/icone.png") center / cover no-repeat,
+        var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: "Outfit", system-ui, sans-serif;
+    }
+    .offline-card {
+      width: min(100%, 420px);
+      padding: 28px;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: 24px;
+      background: var(--cor-card);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+      text-align: center;
+    }
+    img {
+      width: 132px;
+      height: 132px;
+      object-fit: cover;
+      border-radius: 28px;
+      margin-bottom: 18px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 1.55rem;
+      line-height: 1.1;
+    }
+    p {
+      margin: 0 0 22px;
+      color: var(--cor-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, var(--cor-primaria), #dc2626);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="offline-card">
+    <img src="/assets/icons/pwa-icon-192.png" alt="Copa Nordeste Locacoes">
+    <h1>Conexao indisponivel</h1>
+    <p>Algumas telas ja acessadas continuam em cache. Para sincronizar progresso, partidas e recompensas, reconecte e tente novamente.</p>
+    <button type="button" onclick="window.location.reload()">Tentar novamente</button>
+  </main>
+</body>
+</html>

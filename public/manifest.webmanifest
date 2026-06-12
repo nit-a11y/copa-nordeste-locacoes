@@ -1,0 +1,111 @@
+{
+  "id": "https://copa.nordesteloc.com.br/",
+  "name": "Copa Nordeste Locacoes",
+  "short_name": "Copa NDL",
+  "description": "Arena gamificada da Nordeste Locacoes para quizzes, conquistas, cartas e ligas.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/?origem=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "orientation": "portrait",
+  "background_color": "#05070d",
+  "theme_color": "#ef4444",
+  "categories": ["games", "education", "business"],
+  "icons": [
+    {
+      "src": "/assets/icons/pwa-icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Arena",
+      "short_name": "Arena",
+      "description": "Abrir a Arena da Copa Nordeste.",
+      "url": "/?aba=arena",
+      "icons": [{ "src": "/assets/icons/pwa-icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Quizzes",
+      "short_name": "Quizzes",
+      "description": "Abrir os quizzes operacionais.",
+      "url": "/?aba=quizzes",
+      "icons": [{ "src": "/assets/icons/pwa-icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Glorias",
+      "short_name": "Glorias",
+      "description": "Abrir conquistas e destaques.",
+      "url": "/?aba=glorias",
+      "icons": [{ "src": "/assets/icons/pwa-icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/images/icone.png",
+      "sizes": "1536x1024",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Arena Copa Nordeste Locacoes"
+    },
+    {
+      "src": "/assets/icons/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Icone Copa Nordeste"
+    }
+  ]
+}

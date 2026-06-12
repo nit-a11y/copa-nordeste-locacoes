@@ -1,0 +1,14 @@
+node_modules/
+/assets/
+/index.html
+build/
+dist/
+coverage/
+test-results/
+backend/logs/
+.DS_Store
+*.log
+nordeste_copa.db
+temp_*.js
+.env*
+!.env.example
