@@ -4,6 +4,7 @@ assets/
 .env
 .env.*
 !.env.example
+!.env.production.example
 nordeste_copa.db
 backend/logs/
 test-results/

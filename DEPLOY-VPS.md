@@ -39,8 +39,10 @@ O `ecosystem.config.cjs` ja define:
 ```txt
 NODE_ENV=production
 PORT=3011
+APP_URL=https://copa.nordesteloc.com.br
 DB_PATH=/var/data/databases/copa-nordeste-locacoes.db
 TRUST_PROXY=loopback, linklocal, uniquelocal
+PWA_ENABLED=true
 ENABLE_ORIGIN_ISOLATION=false
 ```
 

@@ -15,9 +15,10 @@ const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
   const envContent = fs.readFileSync(envPath, 'utf-8');
   envContent.split('\n').forEach(line => {
-    const [key, ...values] = line.split('=');
-    if (key && values.length && !line.startsWith('#')) {
-      process.env[key.trim()] = values.join('=').trim();
+    const linhaLimpa = line.trim();
+    const [key, ...values] = linhaLimpa.split('=');
+    if (key && values.length && !linhaLimpa.startsWith('#')) {
+      process.env[key.trim()] = values.join('=').trim().replace(/^["']|["']$/g, '');
     }
   });
 }
@@ -32,6 +33,8 @@ const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
 const deveUsarIsolamentoOrigem = process.env.ENABLE_ORIGIN_ISOLATION === 'true';
+const APP_URL = process.env.APP_URL || `http://localhost:${PORT}`;
+const PWA_ENABLED = process.env.PWA_ENABLED === 'true';
 
 // 2. Middlewares padrão NIT e Segurança
 app.use(helmet({
@@ -43,12 +46,22 @@ app.use(cors());
 app.use(express.json());
 app.use(logRequest);
 
+app.get('/env.js', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  res.send(`window.NDL_CONFIG = ${JSON.stringify({
+    ambiente: process.env.NODE_ENV || 'development',
+    appUrl: APP_URL,
+    pwaAtivo: PWA_ENABLED
+  })};`);
+});
+
 // Evita 404 ruidoso do Chrome DevTools ao verificar recursos específicos do navegador.
 app.get('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
   return res.status(204).end();
 });
 
-if (process.env.TRUST_PROXY) {
+if (process.env.TRUST_PROXY && process.env.TRUST_PROXY !== 'false') {
   app.set('trust proxy', process.env.TRUST_PROXY === 'true' ? true : process.env.TRUST_PROXY);
 }
 

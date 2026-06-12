@@ -8,8 +8,11 @@ module.exports = {
     env: {
       NODE_ENV: 'production',
       PORT: 3011, // Porta específica para evitar colisões na VPS
+      APP_URL: 'https://copa.nordesteloc.com.br',
       DB_PATH: '/var/data/databases/copa-nordeste-locacoes.db',
-      TRUST_PROXY: 'loopback, linklocal, uniquelocal'
+      TRUST_PROXY: 'loopback, linklocal, uniquelocal',
+      PWA_ENABLED: 'true',
+      ENABLE_ORIGIN_ISOLATION: 'false'
     },
     log_file: '/var/log/pm2/copa-nordeste-locacoes.log',
     out_file: '/var/log/pm2/copa-nordeste-locacoes-out.log',

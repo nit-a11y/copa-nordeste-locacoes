@@ -1,5 +1,6 @@
 const seletorBotaoInstalar = "pwa-install-button";
 let eventoInstalacaoPendente = null;
+const configuracaoPublica = window.NDL_CONFIG || {};
 
 if (deveAtivarPwa()) {
   registrarServiceWorker();
@@ -10,11 +11,7 @@ if (deveAtivarPwa()) {
 monitorarConexaoPwa();
 
 function deveAtivarPwa() {
-  const host = window.location.hostname;
-  const ehDominioProducao = host === "copa.nordesteloc.com.br";
-  const ehHttps = window.location.protocol === "https:";
-
-  return ehDominioProducao && ehHttps;
+  return configuracaoPublica.pwaAtivo === true && window.location.protocol === "https:";
 }
 
 async function limparPwaDesenvolvimento() {
@@ -39,7 +36,7 @@ async function registrarServiceWorker() {
   }
 
   try {
-    const registro = await navigator.serviceWorker.register("/service-worker.js", {
+    const registro = await navigator.serviceWorker.register("/service-worker.js?pwa=1", {
       scope: "/"
     });
 

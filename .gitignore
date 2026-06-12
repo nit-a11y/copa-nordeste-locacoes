@@ -12,3 +12,4 @@ nordeste_copa.db
 temp_*.js
 .env*
 !.env.example
+!.env.production.example

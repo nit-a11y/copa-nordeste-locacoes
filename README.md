@@ -172,6 +172,21 @@ Para instalação em celulares, o domínio de produção precisa usar HTTPS. Em 
 | `ENABLE_ORIGIN_ISOLATION` | `false` | Reativa COOP/OAC apenas quando o app estiver em HTTPS e precisar de isolamento de origem |
 | `NODE_ENV` | `development` | Modo de execução |
 
+Variaveis adicionais usadas pelo deploy atual:
+
+```txt
+APP_URL=http://localhost:3000
+PWA_ENABLED=false
+```
+
+Na VPS:
+
+```txt
+APP_URL=https://copa.nordesteloc.com.br
+PWA_ENABLED=true
+PORT=3011
+```
+
 ---
 
 ## 🗂️ Estrutura do Projeto

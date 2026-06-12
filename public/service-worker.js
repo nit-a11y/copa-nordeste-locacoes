@@ -2,10 +2,12 @@ const VERSAO_CACHE = "copa-ndl-pwa-v1.0.1";
 const CACHE_APP = `${VERSAO_CACHE}-app`;
 const CACHE_DADOS = `${VERSAO_CACHE}-dados`;
 const CACHE_ESTATICO = `${VERSAO_CACHE}-estatico`;
-const DEVE_ATIVAR_CACHE = self.location.hostname === "copa.nordesteloc.com.br" && self.location.protocol === "https:";
+const parametrosServiceWorker = new URL(self.location.href).searchParams;
+const DEVE_ATIVAR_CACHE = parametrosServiceWorker.get("pwa") === "1" && self.location.protocol === "https:";
 
 const ARQUIVOS_APP = [
   "/",
+  "/env.js",
   "/index.html",
   "/offline.html",
   "/manifest.webmanifest",
