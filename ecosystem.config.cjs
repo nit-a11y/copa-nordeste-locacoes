@@ -7,7 +7,7 @@ module.exports = {
     args: 'start',
     env: {
       NODE_ENV: 'production',
-      PORT: 3010, // Porta específica para evitar colisões na VPS
+      PORT: 3011, // Porta específica para evitar colisões na VPS
       DB_PATH: '/var/data/databases/copa-nordeste-locacoes.db',
       TRUST_PROXY: 'loopback, linklocal, uniquelocal'
     },
