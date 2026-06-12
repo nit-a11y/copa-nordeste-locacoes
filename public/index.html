@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Arena gamificada da Nordeste Locacoes para quizzes, cartas, ligas e conquistas.">
   <meta name="theme-color" content="#ef4444">
   <meta name="mobile-web-app-capable" content="yes">
@@ -24,6 +24,10 @@
   <link rel="stylesheet" href="/assets/css/componentes.css">
 </head>
 <body class="bg-fundo text-texto">
+  <div id="pwa-ios-install-hint" class="pwa-ios-hint" role="status" aria-live="polite" aria-hidden="true">
+    <strong>iOS:</strong> abra o Safari, toque em <span class="pwa-ios-action">Compartilhar</span> e selecione <span class="pwa-ios-action">Adicionar à Tela de Início</span> para instalar o app.
+    <button type="button" class="pwa-ios-hint-close" aria-label="Fechar instruções de instalação">✕</button>
+  </div>
   <canvas id="particles-canvas"></canvas>
 
   <!-- TELA DE AUTENTICAÇÃO (LOGIN / REGISTRO) -->

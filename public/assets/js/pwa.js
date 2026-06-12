@@ -60,12 +60,55 @@ function prepararInstalacaoPwa() {
     evento.preventDefault();
     eventoInstalacaoPendente = evento;
     exibirBotaoInstalarPwa();
+    ocultarDicaInstalacaoIos();
   });
 
   window.addEventListener("appinstalled", () => {
     eventoInstalacaoPendente = null;
     removerBotaoInstalarPwa();
+    ocultarDicaInstalacaoIos();
   });
+
+  if (deveMostrarDicaIos()) {
+    exibirDicaInstalacaoIos();
+  }
+}
+
+function deveMostrarDicaIos() {
+  return isIos() && !estaRodandoComoPwa();
+}
+
+function isIos() {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test(userAgent) || (navigator.platform === 'macintel' && navigator.maxTouchPoints > 1);
+}
+
+function exibirDicaInstalacaoIos() {
+  const dica = document.getElementById("pwa-ios-install-hint");
+  if (!dica) {
+    return;
+  }
+
+  dica.classList.add("visible");
+  dica.setAttribute("aria-hidden", "false");
+
+  const botaoFechar = dica.querySelector(".pwa-ios-hint-close");
+  if (botaoFechar) {
+    botaoFechar.addEventListener("click", () => {
+      dica.classList.remove("visible");
+      dica.setAttribute("aria-hidden", "true");
+    });
+  }
+}
+
+function ocultarDicaInstalacaoIos() {
+  const dica = document.getElementById("pwa-ios-install-hint");
+  if (!dica) {
+    return;
+  }
+
+  dica.classList.remove("visible");
+  dica.setAttribute("aria-hidden", "true");
 }
 
 function exibirBotaoInstalarPwa() {
@@ -92,6 +135,7 @@ function exibirBotaoInstalarPwa() {
 
 function removerBotaoInstalarPwa() {
   document.getElementById(seletorBotaoInstalar)?.remove();
+  ocultarDicaInstalacaoIos();
 }
 
 async function instalarPwa() {
