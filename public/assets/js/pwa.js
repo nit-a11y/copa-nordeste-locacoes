@@ -78,7 +78,15 @@ function exibirBotaoInstalarPwa() {
   botao.className = "pwa-install-button";
   botao.type = "button";
   botao.textContent = "Instalar app";
+  botao.setAttribute("aria-label", "Instalar aplicativo Copa NDL");
   botao.addEventListener("click", instalarPwa);
+
+  const areaMarcaCabecalho = document.querySelector("header .max-w-7xl > div:first-child");
+  if (areaMarcaCabecalho) {
+    areaMarcaCabecalho.appendChild(botao);
+    return;
+  }
+
   document.body.appendChild(botao);
 }
 

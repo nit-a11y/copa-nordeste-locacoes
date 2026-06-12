@@ -1,4 +1,4 @@
-const VERSAO_CACHE = "copa-ndl-pwa-v1.0.1";
+const VERSAO_CACHE = "copa-ndl-pwa-v1.0.2";
 const CACHE_APP = `${VERSAO_CACHE}-app`;
 const CACHE_DADOS = `${VERSAO_CACHE}-dados`;
 const CACHE_ESTATICO = `${VERSAO_CACHE}-estatico`;
